@@ -103,8 +103,10 @@ vnoremap ] %
 vnoremap [ %
 
 "タブ分割
-nnoremap ss :sp<CR>
-nnoremap sv :vsp<CR>
+"nnoremap ss :sp<CR>
+"nnoremap sv :vsp<CR>
+nnoremap ss :new<CR>
+nnoremap sv :vnew<CR>
 "タブ変更
 nnoremap sh <C-w>h
 nnoremap sj <C-w>j
