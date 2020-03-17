@@ -1,4 +1,5 @@
-colorscheme twilight
+"colorscheme hybrid
+"colorscheme jellybeans
 :set showcmd
 
 "ウィンドウサイズ

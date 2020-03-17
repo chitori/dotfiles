@@ -1,8 +1,24 @@
+"neovimç”¨GUIè¨­å®š(GUIã¨ã„ã„ã¤ã¤ã‚¿ãƒ¼ãƒŸãƒŠãƒ«ã‹ã‚‰å®Ÿè¡Œã—ãŸæ™‚ã‚‚å…¥ã£ã¡ã‚ƒã†)
+"if has('gui_running')
+"  if filereadable(expand('~/.gvimrc'))
+""    source ~/.gvimrc " ã“ã®åˆ†å²ã ã¨ã‚¿ãƒ¼ãƒŸãƒŠãƒ«ã‹ã‚‰nvimå‘¼ã‚“ã æ™‚ã‚‚gvimrcèª­ã‚“ã§
+""    è¡Œæ•°ã‹ãªã‚“ã‹ã®è¨­å®šã§ç”»é¢ãŒãƒã‚°ã‚‹ã‹ã‚‰ã¨ã‚Šã‚ãˆãšgvimrcèª­ã‚€ã®ã‚„ã‚ã‚‹
+"  endif
+"else
+"endif
 
-set ch=2		" Make command line two lines high
+" onivimã‹ã©ã†ã‹ã§åˆ†å²ã—ãŸã„æ™‚ã¯ã“ã†
+"if exists('g:gui_oni')
+    " Statements here
+"endif
 
+set ch=2    " Make command line two lines high
 
-set mousehide		" Hide the mouse when typing text
+set encoding=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileformats=unix,dos,mac
+
+set mousehide  " Hide the mouse when typing text
 
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
@@ -10,30 +26,34 @@ map! <S-Insert> <MiddleMouse>
 
 "set t_Co=256
 "let g:twilight_use_iTerm_colors = 1
-"colorscheme twilight
+" twilightã‚«ãƒ©ãƒ¼ã‚¹ã‚­ãƒ¼ãƒãŒGUIå°‚ç”¨ã£ã½ã‹ã£ãŸã®ã§ã¨ã‚Šã‚ãˆãš
+colorscheme jellybeans
+"colorscheme twilight256
 syntax on
 
-" ƒXƒe[ƒ^ƒXƒ‰ƒCƒ“‚Ì•\¦
-set statusline=%<     " s‚ª’·‚·‚¬‚é‚Æ‚«‚ÉØ‚è‹l‚ß‚éˆÊ’u
-set statusline+=[%n]  " ƒoƒbƒtƒ@”Ô†
-set statusline+=%m    " %m C³ƒtƒ‰ƒO
-set statusline+=%r    " %r “Ç‚İ‚İê—pƒtƒ‰ƒO
-set statusline+=%h    " %h ƒwƒ‹ƒvƒoƒbƒtƒ@ƒtƒ‰ƒO
-set statusline+=%w    " %w ƒvƒŒƒrƒ…[ƒEƒBƒ“ƒhƒEƒtƒ‰ƒO
-set statusline+=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " fenc‚Æff‚ğ•\¦
-set statusline+=%y    " ƒoƒbƒtƒ@“à‚Ìƒtƒ@ƒCƒ‹‚Ìƒ^ƒCƒv
-set statusline+=\     " ‹ó”’ƒXƒy[ƒX
-set statusline+=%=    " ¶Šñ‚¹€–Ú‚Æ‰EŠñ‚¹€–Ú‚Ì‹æØ‚è
-set statusline+=%{fugitive#statusline()}  " Git‚Ìƒuƒ‰ƒ“ƒ`–¼‚ğ•\¦
-set statusline+=\ \   " ‹ó”’ƒXƒy[ƒX2ŒÂ
-set statusline+=%1l   " ‰½s–Ú‚ÉƒJ[ƒ\ƒ‹‚ª‚ ‚é‚©
+:filetype on
+
+" ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ©ã‚¤ãƒ³ã®è¡¨ç¤º (ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ä¾å­˜ãŒã‚ã‚‹ãŸã‚æœ€å¾Œå°¾ã«è¨˜è¿°)
+set statusline=%<     " è¡ŒãŒé•·ã™ãã‚‹ã¨ãã«åˆ‡ã‚Šè©°ã‚ã‚‹ä½ç½®
+set statusline+=[%n]  " ãƒãƒƒãƒ•ã‚¡ç•ªå·
+set statusline+=%m    " %m ä¿®æ­£ãƒ•ãƒ©ã‚°
+set statusline+=%r    " %r èª­ã¿è¾¼ã¿å°‚ç”¨ãƒ•ãƒ©ã‚°
+set statusline+=%h    " %h ãƒ˜ãƒ«ãƒ—ãƒãƒƒãƒ•ã‚¡ãƒ•ãƒ©ã‚°
+set statusline+=%w    " %w ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ãƒ©ã‚°
+set statusline+=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " fencã¨ffã‚’è¡¨ç¤º
+set statusline+=%y    " ãƒãƒƒãƒ•ã‚¡å†…ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¿ã‚¤ãƒ—
+set statusline+=\     " ç©ºç™½ã‚¹ãƒšãƒ¼ã‚¹
+set statusline+=%=    " å·¦å¯„ã›é …ç›®ã¨å³å¯„ã›é …ç›®ã®åŒºåˆ‡ã‚Š
+set statusline+=%{fugitive#statusline()}  " Gitã®ãƒ–ãƒ©ãƒ³ãƒåã‚’è¡¨ç¤º
+set statusline+=\ \   " ç©ºç™½ã‚¹ãƒšãƒ¼ã‚¹2å€‹
+set statusline+=%1l   " ä½•è¡Œç›®ã«ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚ã‚‹ã‹
 set statusline+=/
-set statusline+=%L    " ƒoƒbƒtƒ@“à‚Ì‘s”
+set statusline+=%L    " ãƒãƒƒãƒ•ã‚¡å†…ã®ç·è¡Œæ•°
 set statusline+=,
-set statusline+=%c    " ‰½—ñ–Ú‚ÉƒJ[ƒ\ƒ‹‚ª‚ ‚é‚©
-set statusline+=%V    " ‰æ–Êã‚Ì‰½—ñ–Ú‚ÉƒJ[ƒ\ƒ‹‚ª‚ ‚é‚©
-set statusline+=\ \   " ‹ó”’ƒXƒy[ƒX2ŒÂ
-set statusline+=%P    " ƒtƒ@ƒCƒ‹“à‚Ì‰½“‚ÌˆÊ’u‚É‚ ‚é‚©
+set statusline+=%c    " ä½•åˆ—ç›®ã«ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚ã‚‹ã‹
+set statusline+=%V    " ç”»é¢ä¸Šã®ä½•åˆ—ç›®ã«ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚ã‚‹ã‹
+set statusline+=\ \   " ç©ºç™½ã‚¹ãƒšãƒ¼ã‚¹2å€‹
+set statusline+=%P    " ãƒ•ã‚¡ã‚¤ãƒ«å†…ã®ä½•ï¼…ã®ä½ç½®ã«ã‚ã‚‹ã‹
 
 
 set nowrap
@@ -44,6 +64,7 @@ set number
 set wildmenu
 set showcmd
 "set imd
+
 
 set incsearch
 set ignorecase
@@ -63,89 +84,79 @@ set tabstop=2
 set expandtab
 set nf=hex
 set mouse=a
+"keep buffer
+set hidden
 
-imap [ []<left>
-imap ( ()<left>
-imap { {}<left>
+"inoremap [ []<left>
+"inoremap ( ()<left>
+"inoremap { {}<left>
 
 nmap <Esc><Esc> /nohlsearch<CR><ESC>
 
-""ƒJ[ƒ\ƒ‹ˆÚ“®•ÏX
-"noremap k j
-"noremap j h
-"noremap h i
-"noremap i k
+" very magicã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«è¨­å®š
+nmap / /\v
 
-"ƒXƒNƒ[ƒ‹
+"ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
 noremap <Space>l <C-d>
 noremap <Space>h <C-u>
 
 
-"ƒJ[ƒ\ƒ‹ˆÚ“®•ÏXi‘}“üƒ‚[ƒhj
+"ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•å¤‰æ›´ï¼ˆæŒ¿å…¥ãƒ¢ãƒ¼ãƒ‰ï¼‰
 inoremap <C-j> <Down>
 inoremap <C-h> <Left>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 
-"ŠO•”ƒNƒŠƒbƒvƒ{[ƒhƒy[ƒXƒg
+"å¤–éƒ¨ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ãƒšãƒ¼ã‚¹ãƒˆ
 nnoremap <Space>y "*y
+vnoremap <Space>y "*y
 
-"ŠO•”ƒNƒŠƒbƒvƒ{[ƒhƒy[ƒXƒg
+"å¤–éƒ¨ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ãƒšãƒ¼ã‚¹ãƒˆ
 nnoremap <Space>p "*p
 nnoremap <Space>P "*P
+vnoremap <Space>p "*p
+vnoremap <Space>P "*P
 
-"Š‡ŒÊˆÚ“®
-nnoremap ] %
-nnoremap [ %
-vnoremap ] %
-vnoremap [ %
+"æ‹¬å¼§ç§»å‹•
+"nnoremap ] %
+"nnoremap [ %
+"vnoremap ] %
+"vnoremap [ %
 
-"ƒ^ƒu•ªŠ„
+"ã‚¿ãƒ–åˆ†å‰²
 "nnoremap ss :sp<CR>
 "nnoremap sv :vsp<CR>
 nnoremap ss :new<CR>
 nnoremap sv :vnew<CR>
-"ƒ^ƒu•ÏX
+"ã‚¿ãƒ–å¤‰æ›´
 nnoremap sh <C-w>h
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sl <C-w>l
 nnoremap sw <C-w>w
-"ƒ^ƒuˆÚ“®
+"ã‚¿ãƒ–ç§»å‹•
 nnoremap sH <C-w>H
 nnoremap sJ <C-w>J
 nnoremap sK <C-w>K
 nnoremap sL <C-w>L
-"V‹Kƒ^ƒu
+"æ–°è¦ã‚¿ãƒ–
 nnoremap st :tabnew<CR>
 
-"ƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠİ’è
+" ãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆæ™‚shebangã‚’è‡ªå‹•æŒ¿å…¥
+augroup SetShebang
+    autocmd! SetShebang
+    autocmd BufNewFile *.sh 0put =\"#!/bin/bash\"|$
+    autocmd BufNewFile *.rb 0put =\"# -*- encoding: UTF-8 -*-\"|$
+    autocmd BufNewFile *.py 0put =\"# -*- coding: utf-8 -*-\"|$
+augroup END
+
+"ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªè¨­å®š
 "nnoremap :cdg :cd %:h
 "nnoremap :cdc :cd %
 "<Tab>
 "inoremap <C-h> <C-i>
-
-"---neosnippet---------------------------
-" Plugin key-mappings.
-imap <C-b>     <Plug>(neosnippet_expand_or_jump)
-smap <C-b>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-b>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB>
- \ pumvisible() ? "\<C-n>" :
- \ neosnippet#expandable_or_jumpable() ?
- \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-"---end of neosnippet---------------------
 
 "dein Scripts-----------------------------
 if &compatible
@@ -153,32 +164,68 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/th/.vim/dein/repos/github.com/Shougo/dein.vim
+"set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+"
+" deinè‡ªä½“ã®è‡ªå‹•ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«
+let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
+let s:dein_dir = s:cache_home . '/dein'
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if !isdirectory(s:dein_repo_dir)
+  call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
+endif
+let &runtimepath = s:dein_repo_dir .",". &runtimepath
 
+" ãƒ—ãƒ©ã‚°ã‚¤ãƒ³èª­ã¿è¾¼ã¿ï¼†ã‚­ãƒ£ãƒƒã‚·ãƒ¥ä½œæˆ
+let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/dein.toml'
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+  call dein#load_toml(s:toml_file)
+  call dein#end()
+  call dein#save_state()
+endif
+" ä¸è¶³ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®è‡ªå‹•ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«
+if has('vim_starting') && dein#check_install()
+  call dein#install()
+endif
+
+" æ—§deinè¨­å®šæ§˜å­è¦‹ã§æ®‹ã™
 " Required:
-call dein#begin('/Users/th/.vim/dein')
-
-" Let dein manage dein
-" Required:
-call dein#add('Shougo/dein.vim')
-
-" Add or remove your plugins here:
-call dein#add('Shougo/neosnippet.vim')
-call dein#add('Shougo/neosnippet-snippets')
-call dein#add('Shougo/vimproc', {'build' : 'make'})
-call dein#add('Shougo/vimshell.vim')
-call dein#add('Shougo/unite.vim')
-call dein#add('Shougo/neocomplete.vim')
-call dein#add('Shougo/vimfiler')
-call dein#add('tpope/vim-fugitive')
-call dein#add('scrooloose/syntastic.git')
-"call dein#add('w0rp/ale')
-
-" You can specify revision/branch/tag.
-"call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
-
-" Required:
-call dein#end()
+"if dein#load_state('~/.cache/dein')
+"  call dein#begin('~/.cache/dein')
+"  
+"  " Let dein manage dein
+"  " Required:
+"  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+"  
+"  " Add or remove your plugins here:
+"  "call dein#add('Shougo/neosnippet.vim')
+"  "call dein#add('Shougo/neosnippet-snippets')
+"  
+"  call dein#add('Shougo/deoplete.nvim')
+"  if !has('nvim')
+"    call dein#add('roxma/nvim-yarp')
+"    call dein#add('roxma/vim-hug-neovim-rpc')
+"  endif
+"  
+"  call dein#add('Shougo/denite.nvim')
+"  call dein#add('Shougo/neomru.vim')
+"  call dein#add('Shougo/neoyank.vim')
+"  call dein#add('Shougo/vimproc', {'build' : 'make'})
+"  call dein#add('Shougo/vimshell.vim')
+"  "call dein#add('Shougo/unite.vim')
+"  "call dein#add('Shougo/neocomplete.vim')
+""  call dein#add('Shougo/vimfiler')
+"  call dein#add('tpope/vim-fugitive')
+"  call dein#add('scrooloose/syntastic.git')
+"  "call dein#add('w0rp/ale')
+"  
+"  " You can specify revision/branch/tag.
+"  "call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+"  
+"  " Required:
+"  call dein#end()
+"  call dein#save_state()
+"endif
 
 " Required:
 filetype plugin indent on
@@ -191,51 +238,4 @@ syntax enable
 
 "End dein Scripts-------------------------
 
-"VimShellİ’è-------
-"ƒvƒƒ“ƒvƒg‚ÉƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚ğ•\¦
-let g:vimshell_prompt_expr = 'getcwd()." > "'
-let g:vimshell_prompt_pattern = '^\f\+ > '
 
-"neocompleteİ’è-----
-let g:neocomplete#enable_at_startup = 1
-"  •âŠ®Œó•â‚Ìˆê”Ôæ“ª‚ğ‘I‘ğó‘Ô‚É‚·‚é(AutoComplPop‚Æ—‚½“®ì)
-let g:neocomplete#enable_auto_select = 1
-" •âŠ®‚ª©“®‚ÅŠJn‚³‚ê‚é•¶š”
-let g:neocomplete#auto_completion_start_length = 3
-" smarrt case—LŒø‰»B ‘å•¶š‚ª“ü—Í‚³‚ê‚é‚Ü‚Å‘å•¶š¬•¶š‚Ì‹æ•Ê‚ğ–³‹‚·‚é
-let g:neocomplete#enable_smart_case = 1
-" camle case‚ğ—LŒø‰»B‘å•¶š‚ğ‹æØ‚è‚Æ‚µ‚½ƒƒCƒ‹ƒhƒJ[ƒh‚Ì‚æ‚¤‚ÉU‚é•‘‚¤
-let g:neocomplete#enable_camel_case_completion = 1
-" _(ƒAƒ“ƒ_[ƒo[)‹æØ‚è‚Ì•âŠ®‚ğ—LŒø‰»
-let g:neocomplete#enable_underbar_completion = 1
-
-inoremap <expr><C-m> neocomplete#smart_close_popup()."\<C-m>"
-" •âŠ®‚ğ‘I‘ğ‚µpopup‚ğ•Â‚¶‚é
-inoremap <expr><C-y> neocomplete#close_popup()
-" •âŠ®‚ğƒLƒƒƒ“ƒZƒ‹‚µpopup‚ğ•Â‚¶‚é
-inoremap <expr><C-e> neocomplete#cancel_popup()
-" TAB‚Å•âŠ®‚Å‚«‚é‚æ‚¤‚É‚·‚é
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" undo
-inoremap <expr><C-g>     neocomplete#undo_completion()
-"inoremap <expr><C-l>     neocomplete#complete_common_string()
-inoremap <expr><C-q>     neocomplete#complete_common_string()
-" •âŠ®Œó•â‚ªo‚Ä‚¢‚½‚çŠm’èA‚È‚¯‚ê‚Î‰üs
-inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : "<CR>"
-"--------------------
-
-"Uniteİ’è------------
-let g:unite_enable_start_insert=1
-let g:unite_source_history_yank_enable =1
-let g:unite_source_file_mru_limit = 200
-
-nnoremap  ,uu :Unite file<CR>
-"nnoremap  ,uy :<C-u>Unite history/yank<CR>
-nnoremap  ,ub :<C-u>Unite buffer<CR>
-"nnoremap  ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-"nnoremap  ,ur :<C-u>Unite -buffer-name=register register<CR>
-"nnoremap  ,uu :<C-u>Unite file_mru buffer<CR>
-
-"syntastics
-let g:syntastic_javascript_checkers=['eslint']
-let g:syntastic_java_checkers=['javac']

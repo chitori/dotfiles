@@ -4,8 +4,6 @@ set smartcase
 set hlsearch
 set incsearch
 set imd
-set showcmd
-set wildmenu
 
 
 "カーソル移動変更
@@ -30,7 +28,12 @@ inoremap <C-l> <Right>
 "inoremap <C-h> <C-i>
 
 "外部クリップボードペースト
-nnoremap P "*p
+nnoremap <Space>y "*y
+vnoremap <Space>y "*y
+
+"外部クリップボードペースト
+nnoremap <Space>p "*p
+nnoremap <Space>P "*P
 
 "矩形ビジュアル
 nnoremap <M-v> <C-v>
