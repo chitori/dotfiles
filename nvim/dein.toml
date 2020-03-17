@@ -1,0 +1,156 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+hook_add = '''
+  nnoremap  <silent> ,ut :<C-u>Denite filetype<CR>
+  nnoremap  <silent> ,uu :<C-u>Denite file<CR>
+  nnoremap  <silent> ,um :<C-u>Denite file_mru<CR>
+  nnoremap  <silent> ,uy :<C-u>Denite neoyank<CR>
+  nnoremap  <silent> ,ub :<C-u>Denite buffer<CR>
+  nnoremap  <silent> ,uf :<C-u>DeniteBufferDir file<CR>
+  "nnoremap  ,ur :<C-u>Unite -buffer-name=register register<CR>
+  "nnoremap  ,uu :<C-u>Unite file_mru buffer<C>
+  " Define mappings
+  autocmd FileType denite call s:denite_my_settings()
+  function! s:denite_my_settings() abort
+    nnoremap <silent><buffer><expr> <CR>
+    \ denite#do_map('do_action')
+    nnoremap <silent><buffer><expr> d
+    \ denite#do_map('do_action', 'delete')
+    nnoremap <silent><buffer><expr> p
+    \ denite#do_map('do_action', 'preview')
+    nnoremap <silent><buffer><expr> q
+    \ denite#do_map('quit')
+    nnoremap <silent><buffer><expr> i
+    \ denite#do_map('open_filter_buffer')
+    nnoremap <silent><buffer><expr> <Space>
+    \ denite#do_map('toggle_select').'j'
+  endfunction
+'''
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc'
+build = 'make'
+
+[[plugins]]
+repo = 'Shougo/vimshell.vim'
+hook_add = '''
+  let g:vimshell_prompt_expr = 'getcwd()." > "'
+  let g:vimshell_prompt_pattern = '^\f\+ > '
+'''
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'scrooloose/syntastic.git'
+hook_add = '''
+  let g:syntastic_javascript_checkers=['eslint']
+  let g:syntastic_java_checkers=['javac']
+'''
+
+[[plugins]]
+repo = 'w0rp/ale'
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+rev = 'next'
+build = 'bash install.sh'
+depends = 'deoplete.nvim'
+hook_add = '''
+  set hidden
+  let g:LanguageClient_serverCommands = {
+      \ 'vue': ['vls'],
+      \ 'html': [],
+      \ 'javascript': [],
+      \ 'css': [],
+      \ }
+  
+  let g:LanguageClient_loadSettings=1
+  
+  " Below is optional, if you want it available globally,
+  " else by default settings.json will reside in your project root directory ($PROJECT_ROOT/.vim/settings.json)
+  let g:LanguageClient_settingsPath='~/.config/nvim/LanguageClient-neovim/setting.json'
+
+  augroup LanguageClient_config
+    autocmd!
+    autocmd User LanguageClientStarted setlocal signcolumn=yes
+    autocmd User LanguageClientStopped setlocal signcolumn=auto
+  augroup END
+  
+  let g:LanguageClient_autoStart = 1
+  nnoremap <F2> :call LanguageClient_textDocument_hover()<CR>
+  nnoremap <F3> :call LanguageClient_textDocument_definition()<CR>
+  nnoremap <F4> :call LanguageClient_textDocument_rename()<CR>
+  nnoremap <F5> :call LanguageClient_textDocument_formatting()<CR> 
+
+  " not stop completion $ & /
+  setlocal iskeyword+=$
+  setlocal iskeyword+=-
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+#depends = 'context_filetype.vim'
+on_event = 'InsertEnter'
+hook_source = '''
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
+  let g:deoplete#enable_at_startup = 1
+"  let g:deoplete#auto_complete_delay = 0
+"  let g:deoplete#auto_complete_start_length = 2
+"  let g:deoplete#enable_camel_case = 0
+"  let g:deoplete#enable_ignore_case = 0
+"  let g:deoplete#enable_refresh_always = 0
+"  let g:deoplete#enable_smart_case = 1
+"  let g:deoplete#file#enable_buffer_path = 1
+"  let g:deoplete#max_list = 10000
+  " ポップアップ表示時にtabで下(C-j)
+  " ポップアップ未表示でsnippet展開・ジャンプ可能ならそうする "
+  imap <expr><tab> pumvisible() ? "\<C-j>" :
+        \ neosnippet#expandable_or_jumpable() ?
+        \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+on_event = 'InsertCharPre'
+on_i = 1
+on_ft = ['snippet']
+depends = ['context_filetype.vim', 'neosnippet-snippets']
+hook_source = '''
+  " C-nでsnipet展開・ジャンプ deopleteでtab展開書いてるしこれ必要か？
+  imap <C-n> <Plug>(neosnippet_expand_or_jump)
+  smap <C-n> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-n> <Plug>(neosnippet_expand_target)
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
+  echo 'hello'
+'''
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
