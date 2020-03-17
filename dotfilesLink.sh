@@ -2,7 +2,7 @@
 ln -sf ~/dotfiles/.bash_profile ~/.bash_profile
 ln -sf ~/dotfiles/.bashrc ~/.bashrc
 
-NVIM_DIR='~/.config/nvim'
+NVIM_DIR=~/.config/nvim
 if [ ! -e ${NVIM_DIR} ]; then
   mkdir $NVIM_DIR
 fi
