@@ -144,6 +144,10 @@ nnoremap sL <C-w>L
 "新規タブ
 nnoremap st :tabnew<CR>
 
+"ターミナルモード
+tmap <Esc> <C-\><C-n>
+
+
 " ファイル作成時shebangを自動挿入
 augroup SetShebang
     autocmd! SetShebang
