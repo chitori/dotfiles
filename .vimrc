@@ -18,6 +18,10 @@ set encoding=utf-8
 set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 set fileformats=unix,dos,mac
 
+" nvim用のpython環境（virtualenv前提）
+let g:python3_host_prog = expand('~/.nvim-python3/bin/python3')
+let g:python_host_prog = expand('~/.nvim-python2/bin/python2')
+
 set mousehide  " Hide the mouse when typing text
 
 " Make shift-insert work like in Xterm
