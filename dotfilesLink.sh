@@ -1,10 +1,15 @@
 #!/bin/sh
-ln -sf ~/dotfiles/.bash_profile ~/.bash_profile
-ln -sf ~/dotfiles/.bashrc ~/.bashrc
+if [ `echo $SHELL | grep 'bash'` ]; then
+  ln -sf ~/dotfiles/.bash_profile ~/.bash_profile
+  ln -sf ~/dotfiles/.bashrc ~/.bashrc
+fi
+if [ `echo $SHELL | grep 'zsh'` ]; then
+  ln -sf ~/dotfiles/.zshrc ~/.zshrc
+fi
 
 NVIM_DIR=~/.config/nvim
 if [ ! -e ${NVIM_DIR} ]; then
-  mkdir $NVIM_DIR
+  mkdir -p $NVIM_DIR
 fi
 
 #ln -sf ~/dotfiles/.vimrc ~/.vimrc
