@@ -1,4 +1,10 @@
-source ~/.git-prompt.sh
+# git-prompt
+source ~/.config/zsh/git-prompt.sh
+
+# git-completion
+fpath=(~/.zsh $fpath)
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+autoload -Uz compinit && compinit
 
 alias ls='ls -G'
 alias la='ls -la'
@@ -13,6 +19,7 @@ export LANG=ja_JP.UTF-8
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # プロンプトにgitブランチ名を表示
 autoload -Uz vcs_info
