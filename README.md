@@ -6,7 +6,7 @@
 ## Neovim
 ### pyenv、virtualenv導入
 ```
-# pyenv導入
+# 導入
 brew update
 brew install pyenv
 
@@ -18,12 +18,18 @@ https://github.com/pyenv/pyenv
 
 ```
 # virtualenv導入、nvim用python環境設定
-pyenv global 3.x.x
-pip install virtualenv
-virtualenv -p python3 ~/nvim-python3
+brew install pyenv-virtualenv
+pyenv virtualenv 3.x.x nvim-python3
+pyenv virtualenv 2.x.x nvim-python2
 
-pyenv global 2.x.x
-virtualenv -p python ~/nvim-python2
+pyenv global nvim-python3
+pip install pynvim
 
-pyenv global system
+pyenv global nvim-python2
+pip install pynvim
+```
+
+```
+# nvim導入
+brew install noevim
 ```
