@@ -31,5 +31,5 @@ pip install pynvim
 
 ```
 # nvim導入
-brew install noevim
+brew install neovim
 ```
